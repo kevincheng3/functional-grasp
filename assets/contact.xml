@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mujoco>
+    <!-- <compiler angle="radian" coordinate="local" meshdir="E:\zju\X-handsupervisedlearning\assets3_black\stls" texturedir="../textures"></compiler> -->
+    <compiler angle="radian" coordinate="local" meshdir="..\stls" texturedir="../textures"></compiler>
+    <option timestep="0.001" iterations="20" gravity="0 0 -9.8">
+        <!--apirate only affects the socket API and not the physics simulation-->
+        <flag warmstart="enable"></flag>
+    </option>
+
+    <asset>
+        <mesh name="test" file = "E:/zju/newhand_stl/compress/handbase.stl"/>
+        <mesh name="test1" file = "E:/zju/newhand_stl/compress/index1.stl"/>
+    </asset>
+
+    <worldbody>
+
+        <!-- <body name="object" pos="0 0 0">
+            <geom name="x" type="capsule" size = "0.01 0.1" fromto="0 0 0 1 0 0" rgba = '1 0 0 0.3'/>
+            <geom name="y" type="capsule" size = "0.01 0.1" fromto="0 0 0 0 1 0" rgba = '0 1 0 0.3'/>
+            <geom name="z" type="capsule" size = "0.01 0.1" fromto="0 0 0 0 0 1" rgba = '0 0 1 0.3'/>
+            <geom name="test1" type="mesh" mesh="test1"/>
+            <site name="object:center" pos="0 0 0" rgba="1 0 0 0" size="0.01 0.01 0.01"></site>
+        </body> -->
+
+        <body pos="1 0 0">
+            <geom type="box" size="20 20 0.2" contype="2" conaffinity="1"/>
+
+            <body pos="0 0 1">
+                <geom type="box" size="0.5 0.5 0.5" contype="2" conaffinity="1"/>
+                <joint type="slide"/>
+            </body>
+
+            <body pos="2 0 1">
+                <geom type="box" size="0.5 0.5 0.5" contype="0" conaffinity="4"/>
+                <joint type="slide"/>
+            </body>
+
+            <body pos="4 0 1">
+                <geom type="box" size="0.5 0.5 0.5" contype="0" conaffinity="8"/>
+                <joint type="slide"/>
+            </body>
+
+        </body>
+
+        <light directional="true" ambient="0.2 0.2 0.2" diffuse="0.8 0.8 0.8" specular="0.3 0.3 0.3" castshadow="false" pos="0 1 4" dir="0 0 -1" name="light0"></light>
+    </worldbody>
+</mujoco>
