@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mujoco>
+    <compiler angle="degree" coordinate="local"></compiler>
+    <option timestep="0.001" iterations="100" gravity="0 0 -9.8" cone="elliptic" impratio="10">
+        <!--apirate only affects the socket API and not the physics simulation-->
+        <flag warmstart="enable"></flag>
+    </option>
+
+
+    <worldbody>
+        <body pos="1 0 0">
+            <geom type="box" size="20 20 0.2" contype="1" conaffinity="1" euler= "30 0 0" friction="0.6 0.05 0.01"/>
+        </body>
+        <body pos="0 0 1">
+            <geom type="box" size="0.5 0.5 0.5" contype="1" conaffinity="1" euler= "30 0 0" friction="0.6 0.05 0.01"/>
+            <joint type="free"/>
+        </body>
+
+        <body pos="2 0 1">
+            <geom type="box" size="0.5 0.5 0.5" contype="1" conaffinity="1" euler= "30 0 0" margin="0.01"/>
+            <joint type="free"/>
+        </body>
+
+        <body pos="4 0 1">
+            <geom type="box" size="0.5 0.5 0.5" contype="1" conaffinity="1" euler= "30 0 0" solref="0.002 0.1"/>
+            <joint type="free"/>
+        </body>
+
+
+
+        <light directional="true" ambient="0.2 0.2 0.2" diffuse="0.8 0.8 0.8" specular="0.3 0.3 0.3" castshadow="false" pos="0 1 4" dir="0 0 -1" name="light0"></light>
+    </worldbody>
+</mujoco>
