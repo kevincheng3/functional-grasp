@@ -112,7 +112,7 @@ class Controller():
 
 
 def main():
-    model = load_model_from_path("functional grasp/assets/newhand.xml")
+    model = load_model_from_path("E:/zju/desktop_organization/functional grasp/assets/newhand.xml")
     sim = MjSim(model)
     # viewer set up
     viewer = MjViewer(sim)
@@ -124,7 +124,6 @@ def main():
     viewer.cam.distance = 2
     viewer.cam.azimuth = 180.
     viewer.cam.elevation = -30
-    # print(hand.zs_joint_id)
     while 1:
         hand.apply_torque(hand.zs_joint_id, hand.zs_ac_id, 0.1, 0, kp=100)      
         hand.apply_torque(hand.yr_joint_id, hand.yr_ac_id, 1.57, 0, kp=100)
@@ -140,5 +139,20 @@ def main():
         sim.step()
         viewer.render()
 
+    # print(sim.data.site_xpos[sim.model.site_name2id('robot0:ff_contact')])
+    # print(sim.data.site_xmat[sim.model.site_name2id('robot0:ff_contact')].reshape(3,3).dot(np.array([1,0,0])))
+    
+    # print(sim.data.site_xpos[sim.model.site_name2id('robot0:mf_contact')])
+    # print(sim.data.site_xmat[sim.model.site_name2id('robot0:mf_contact')].reshape(3,3).dot(np.array([1,0,0])))
+    
+    # print(sim.data.site_xpos[sim.model.site_name2id('robot0:rf_contact')])
+    # print(sim.data.site_xmat[sim.model.site_name2id('robot0:rf_contact')].reshape(3,3).dot(np.array([1,0,0])))
+                    
+    # print(sim.data.site_xpos[sim.model.site_name2id('robot0:lf_contact')])
+    # print(sim.data.site_xmat[sim.model.site_name2id('robot0:lf_contact')].reshape(3,3).dot(np.array([1,0,0])))
+
+    # print(sim.data.site_xpos[sim.model.site_name2id('robot0:th_contact')])
+    # print(sim.data.site_xmat[sim.model.site_name2id('robot0:th_contact')].reshape(3,3).dot(np.array([0, -1, 0])))
+        
 if __name__ == '__main__':
     main()
