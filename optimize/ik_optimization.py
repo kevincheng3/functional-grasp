@@ -243,7 +243,7 @@ class Hand(object):
         v40 = np.array([self.L40x, self.L40y, self.L40z])
         v41 = [0, self.L41y, self.L41z]
         v42 = [0, 0, self.L42]
-        v43 = [0, self.L43y, self.L43z]   
+        v43 = [0, self.L43y, self.L43z]
 
         th_pos1 =  R41.apply(v41)
         th_pos2 =  R42.apply(v42)
