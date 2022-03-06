@@ -101,7 +101,7 @@ class Hand(object):
       
     def fingertip_pos(self, pos):
         Rw = R.from_euler("XYZ", [0, 0, 0]).as_matrix() # base body pose
-        pose = pos[3:6] # displacement of the palm
+        pose = pos[3:6] # rotation of the palm
         matrix = R.from_euler("XYZ", pose).as_matrix() # rotation of the palm
 
         R0 = np.array(Rw).dot(np.array(matrix))
@@ -274,22 +274,16 @@ def cost(x, infor_object):
     obj_pos = infor_object[:n]
     obj_vec = infor_object[n:]
 
-
     hand = Hand()
-    hand.set_palm(x[:3], x[3], x[4], x[5])
+
     assert len(infor_object) % 6 == 0, "the dimention of the object is incorrect"
+    hand_pos, hand_vec = hand.fingertip_pos(x[:])    
 
-    print("obj:", obj_pos, '\n', obj_vec)
-    index_pos, index_vec = hand.index_fingertip(x[6], x[7], x[8], x[9])
-    thumb_pos, thumb_vec = hand.thumb_fingertip(x[10], x[11], x[12], x[13], x[14])
-    hand_pos = np.append(index_pos, thumb_pos)
-    hand_vec = np.append(index_vec, thumb_vec)
-    print("hand:", hand_pos, '\n', hand_vec)
-    # print(np.linalg(hand_pos[:3]- np.array( obj_pos[:3])))
-    pos_cost = np.linalg.norm(1000 * (hand_pos[:3] - np.array( obj_pos[:3])))+ np.linalg.norm(1000 * (hand_pos[3:6] - np.array( obj_pos[3:6])))
+    pos_cost = np.linalg.norm(1000 * (hand_pos[:] - np.array( obj_pos[:])))
                 
-    vec_cost = 1000 * np.dot(np.array( hand_vec[:3]), np.array( obj_vec[:3])) + np.dot(np.array( hand_vec[3:6]), np.array( obj_vec[3:6]))
-
+    vec_cost = 10 * np.dot(np.array( hand_vec[:]), np.array( obj_vec[:]))
+    
+    # print("hand:", hand_pos, '\n', hand_vec)  
     # print(pos_cost, vec_cost)
     return pos_cost + vec_cost
 
@@ -326,19 +320,36 @@ bounds = Bounds([-0.25, 0.0, -0.3, -0.75, -0.75, -0.75, -0.436, 0, 0,    0, -1.0
                 [0.25, 0.2, 0.5, 0.75, 0.75, 0.75, 0.436,  1.571, 1.571, 1.571, 1.047, 1.309, 0.262, 0.524, 0])
 
 def main():
-    pos = np.zeros(12)
+    # pos = np.zeros(12)
+    # hand = Hand()
+    # position, vector = hand.fingertip_pos(pos)
+    # for i in range(0,15,3):
+    #     print(position[i:i+3] )
+    #     print(vector[i:i+3])
+    constraint_para = np.load("../data/constraint_data.npy")
 
-    hand = Hand()
-    position, vector = hand.fingertip_pos(pos)
-    for i in range(0,15,3):
-        print(position[i:i+3] )
-        print(vector[i:i+3])
-    # x0 = np.array([0.015, 0.2, 0.0224, 0.607, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
-    # res = minimize(cost, x0, args=((-0.015, 0.012, 0.03, -0.02, -0.012,  0.03, 0, 1, 0, 0, -1, 0),), 
-    #            options={'verbose': 1})    
+    contact_para = np.load('../data/all_contact_data.npy') 
+    # print('constraint', constraint_para[0].shape[0])
+    # print('contact', contact_para)
+    bounds = Bounds(constraint_para[0][:], constraint_para[1][:])
+    x0 = np.load("../data/ini.npy")
+
+    res = minimize(cost, x0, args=(contact_para,),method = "L-BFGS-B", 
+               options={'verbose': 1}, bounds=bounds)
+    # res.x = np.zeros(12)
+    np.save("../data/data.npy", res.x)   
     # print(res.x)
-    # print(type(res.x))
-    # pass
+    hand = Hand()
+    hand_pos, hand_vec = hand.fingertip_pos(res.x) 
+    for i in range(0,15,3):
+        print(hand_pos[i:i+3])
+
+    print('____________________________________________________________________')
+    for i in range(0,15,3):       
+        print(hand_vec[i:i+3])
+
+
+
 
 if __name__ == '__main__':
     main()
