@@ -112,47 +112,75 @@ class Controller():
 
 
 def main():
+    data = np.load("functional grasp/data/data.npy")
     model = load_model_from_path("E:/zju/desktop_organization/functional grasp/assets/newhand.xml")
     sim = MjSim(model)
     # viewer set up
     viewer = MjViewer(sim)
     hand = Controller(sim)
-    body_id = sim.model.body_name2id('obj')
+    body_id = sim.model.body_name2id('robot0:hand mount')
     lookat = sim.data.body_xpos[body_id]
     for idx, value in enumerate(lookat):
         viewer.cam.lookat[idx] = value
     viewer.cam.distance = 2
     viewer.cam.azimuth = 180.
     viewer.cam.elevation = -30
-    while 1:
-        hand.apply_torque(hand.zs_joint_id, hand.zs_ac_id, 0.1, 0, kp=100)      
-        hand.apply_torque(hand.yr_joint_id, hand.yr_ac_id, 1.57, 0, kp=100)
-        hand.apply_torque(hand.xr_joint_id, hand.xr_ac_id, 0, 0, kp=100)
-        hand.apply_torque(hand.zr_joint_id, hand.zr_ac_id, 0, 0, kp=100)
-        hand.apply_torque(hand.ff_joint_id, hand.ff_ac_id, 0, 0, kp=100)
-        hand.apply_torque(hand.mf_joint_id, hand.mf_ac_id, 0, 0, kp=100)
-        hand.apply_torque(hand.rf_joint_id, hand.rf_ac_id, 0, 0, kp=100)
-        hand.apply_torque(hand.lf_joint_id, hand.lf_ac_id, 0, 0, kp=100)
-        hand.apply_torque(hand.th1_joint_id, hand.th1_ac_id, 0, 0, kp=100)
-        hand.apply_torque(hand.th2_joint_id, hand.th2_ac_id, 0, 0, kp=100)
-        # print(sim.data.qpos[hand.ff_joint_id])
+    niter = 2999
+
+    # for i in range(5000):
+    #     hand.apply_torque(hand.xr_joint_id, hand.xr_ac_id, -1.76, 0, kp=100)
+    #     hand.apply_torque(hand.zr_joint_id, hand.zr_ac_id, 1.57, 0, kp=100)
+    #     hand.apply_torque(hand.xs_joint_id, hand.xs_ac_id, 0, 0, kp=100)
+    #     hand.apply_torque(hand.ys_joint_id, hand.ys_ac_id, -0.1, 0, kp=100)
+    #     hand.apply_torque(hand.zs_joint_id, hand.zs_ac_id, 0, 0, kp=100)
+    #     hand.apply_torque(hand.th1_joint_id, hand.th1_ac_id, data[11] / niter * i, 0, kp=100)
+    #     sim.step()
+    #     viewer.render()
+    # for i in range(niter + 1):
+    #     hand.apply_torque(hand.xs_joint_id, hand.xs_ac_id, data[0] / niter * i, 0, kp=100)      
+    #     hand.apply_torque(hand.ys_joint_id, hand.yr_ac_id, -0.1 + (data[1] + 0.1) / niter * i, 0, kp=100)
+    #     hand.apply_torque(hand.zs_joint_id, hand.zs_ac_id, data[2] / niter * i, 0, kp=100)
+    #     hand.apply_torque(hand.xr_joint_id, hand.xr_ac_id, -1.76 + (data[3] + 1.76)/ niter * i, 0, kp=100)
+    #     hand.apply_torque(hand.yr_joint_id, hand.yr_ac_id, data[4] / niter * i, 0, kp=100)
+    #     hand.apply_torque(hand.zr_joint_id, hand.zr_ac_id, 1.57 + (data[5] - 1.57)/ niter * i, 0, kp=100)
+    #     hand.apply_torque(hand.ff_joint_id, hand.ff_ac_id, data[6] / niter * i, 0, kp=100)
+    #     hand.apply_torque(hand.mf_joint_id, hand.mf_ac_id, data[7] / niter * i, 0, kp=100)
+    #     hand.apply_torque(hand.rf_joint_id, hand.rf_ac_id, data[8] / niter * i, 0, kp=100)
+    #     hand.apply_torque(hand.lf_joint_id, hand.lf_ac_id, data[9] / niter * i, 0, kp=100)
+    #     hand.apply_torque(hand.th2_joint_id, hand.th2_ac_id, data[10] / niter * i, 0, kp=100)
+    #     hand.apply_torque(hand.th1_joint_id, hand.th1_ac_id, data[11] / niter * i, 0, kp=100)
+    #     sim.step()
+    #     viewer.render()
+    for i in range(100000):
+        hand.apply_torque(hand.xs_joint_id, hand.xs_ac_id, data[0], 0, kp=100)      
+        hand.apply_torque(hand.ys_joint_id, hand.ys_ac_id, data[1], 0, kp=100)
+        hand.apply_torque(hand.zs_joint_id, hand.zs_ac_id, data[2], 0, kp=100)
+        hand.apply_torque(hand.xr_joint_id, hand.xr_ac_id, data[3], 0, kp=100)
+        hand.apply_torque(hand.yr_joint_id, hand.yr_ac_id, data[4], 0, kp=100)
+        hand.apply_torque(hand.zr_joint_id, hand.zr_ac_id, data[5], 0, kp=100)
+        hand.apply_torque(hand.ff_joint_id, hand.ff_ac_id, data[6], 0, kp=100)
+        hand.apply_torque(hand.mf_joint_id, hand.mf_ac_id, data[7], 0, kp=100)
+        hand.apply_torque(hand.rf_joint_id, hand.rf_ac_id, data[8], 0, kp=100)
+        hand.apply_torque(hand.lf_joint_id, hand.lf_ac_id, data[9], 0, kp=100)
+        hand.apply_torque(hand.th2_joint_id, hand.th2_ac_id, data[10], 0, kp=100)
+        hand.apply_torque(hand.th1_joint_id, hand.th1_ac_id, data[11], 0, kp=100)
         sim.step()
         viewer.render()
 
-    # print(sim.data.site_xpos[sim.model.site_name2id('robot0:ff_contact')])
-    # print(sim.data.site_xmat[sim.model.site_name2id('robot0:ff_contact')].reshape(3,3).dot(np.array([1,0,0])))
+    print(sim.data.site_xpos[sim.model.site_name2id('robot0:ff_contact')])
+    print(sim.data.site_xmat[sim.model.site_name2id('robot0:ff_contact')].reshape(3,3).dot(np.array([1,0,0])))
     
-    # print(sim.data.site_xpos[sim.model.site_name2id('robot0:mf_contact')])
-    # print(sim.data.site_xmat[sim.model.site_name2id('robot0:mf_contact')].reshape(3,3).dot(np.array([1,0,0])))
+    print(sim.data.site_xpos[sim.model.site_name2id('robot0:mf_contact')])
+    print(sim.data.site_xmat[sim.model.site_name2id('robot0:mf_contact')].reshape(3,3).dot(np.array([1,0,0])))
     
-    # print(sim.data.site_xpos[sim.model.site_name2id('robot0:rf_contact')])
-    # print(sim.data.site_xmat[sim.model.site_name2id('robot0:rf_contact')].reshape(3,3).dot(np.array([1,0,0])))
+    print(sim.data.site_xpos[sim.model.site_name2id('robot0:rf_contact')])
+    print(sim.data.site_xmat[sim.model.site_name2id('robot0:rf_contact')].reshape(3,3).dot(np.array([1,0,0])))
                     
-    # print(sim.data.site_xpos[sim.model.site_name2id('robot0:lf_contact')])
-    # print(sim.data.site_xmat[sim.model.site_name2id('robot0:lf_contact')].reshape(3,3).dot(np.array([1,0,0])))
+    print(sim.data.site_xpos[sim.model.site_name2id('robot0:lf_contact')])
+    print(sim.data.site_xmat[sim.model.site_name2id('robot0:lf_contact')].reshape(3,3).dot(np.array([1,0,0])))
 
-    # print(sim.data.site_xpos[sim.model.site_name2id('robot0:th_contact')])
-    # print(sim.data.site_xmat[sim.model.site_name2id('robot0:th_contact')].reshape(3,3).dot(np.array([0, -1, 0])))
+    print(sim.data.site_xpos[sim.model.site_name2id('robot0:th_contact')])
+    print(sim.data.site_xmat[sim.model.site_name2id('robot0:th_contact')].reshape(3,3).dot(np.array([0, -1, 0])))
         
 if __name__ == '__main__':
     main()
