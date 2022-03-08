@@ -37,7 +37,7 @@
         <default class="robot0:asset_class">
             <geom friction="1 0.005 0.001" condim="4" margin="0.001" contype="1" conaffinity="1"></geom>
             <joint limited="true" damping="0.05"></joint>
-            <general ctrllimited="true" forcelimited="true"></general>
+            <general ctrllimited="true"></general>
             <site size="0.005" rgba="0.4 0.9 0.4 1"></site>
         </default>
         <default class="robot0:D_Touch">
@@ -236,18 +236,32 @@
     </tendon>
 
     <actuator>
-        <motor name="robot0:root_x" class="robot0:asset_class" joint="robot0:root_x" ctrlrange="-100 100" forcerange="-100 100"></motor>
-        <motor name="robot0:root_y" class="robot0:asset_class" joint="robot0:root_y" ctrlrange="-0.8 0.8" forcerange="-30 30"></motor>
-        <motor name="robot0:root_z" class="robot0:asset_class" joint="robot0:root_z" ctrlrange="-100 100" forcerange="-30 30"></motor>
-        <motor name="robot0:root_rotationx" class="robot0:asset_class" joint="robot0:root_rotationx" ctrlrange="-3.14 3.14" forcerange="-5 5"></motor>
-        <motor name="robot0:root_rotationy" class="robot0:asset_class" joint="robot0:root_rotationy" ctrlrange="-3.14 3.14" forcerange="-5 5"></motor>
-        <motor name="robot0:root_rotationz" class="robot0:asset_class" joint="robot0:root_rotationz" ctrlrange="-3.14 3.14" forcerange="-5 5"></motor>
-        <motor name="robot0:A_FFJ2" class="robot0:asset_class" joint="robot0:FFJ2" ctrlrange="-1 1" forcerange="-10 10"></motor>
-        <motor name="robot0:A_MFJ2" class="robot0:asset_class" joint="robot0:MFJ2" ctrlrange="-1 1" forcerange="-10 10"></motor>
-        <motor name="robot0:A_RFJ2" class="robot0:asset_class" joint="robot0:RFJ2" ctrlrange="-1 1" forcerange="-10 10"></motor>
-        <motor name="robot0:A_LFJ2" class="robot0:asset_class" joint="robot0:LFJ2" ctrlrange="-1 1" forcerange="-10 10"></motor>
-		<motor name="robot0:A_THJ2" class="robot0:asset_class" joint="robot0:THJ2" ctrlrange="-1 1" forcerange="-10 10"></motor>
-		<motor name="robot0:A_THJ3" class="robot0:asset_class" joint="robot0:THJ3" ctrlrange="-1 1" forcerange="-3 3"></motor>
+        <motor name="robot0:root_x" class="robot0:asset_class" joint="robot0:root_x" ctrlrange="-100 100"></motor>
+        <motor name="robot0:root_y" class="robot0:asset_class" joint="robot0:root_y" ctrlrange="-100 100"></motor>
+        <motor name="robot0:root_z" class="robot0:asset_class" joint="robot0:root_z" ctrlrange="-100 100"></motor>
+        <motor name="robot0:root_rotationx" class="robot0:asset_class" joint="robot0:root_rotationx" ctrlrange="-100 100"></motor>
+        <motor name="robot0:root_rotationy" class="robot0:asset_class" joint="robot0:root_rotationy" ctrlrange="-100 100"></motor>
+        <motor name="robot0:root_rotationz" class="robot0:asset_class" joint="robot0:root_rotationz" ctrlrange="-100 100"></motor>
+        <motor name="robot0:A_FFJ2" class="robot0:asset_class" joint="robot0:FFJ2" ctrlrange="-1 1"></motor>
+        <motor name="robot0:A_MFJ2" class="robot0:asset_class" joint="robot0:MFJ2" ctrlrange="-1 1"></motor>
+        <motor name="robot0:A_RFJ2" class="robot0:asset_class" joint="robot0:RFJ2" ctrlrange="-1 1"></motor>
+        <motor name="robot0:A_LFJ2" class="robot0:asset_class" joint="robot0:LFJ2" ctrlrange="-1 1"></motor>
+		<motor name="robot0:A_THJ2" class="robot0:asset_class" joint="robot0:THJ2" ctrlrange="-1 1"></motor>
+		<motor name="robot0:A_THJ3" class="robot0:asset_class" joint="robot0:THJ3" ctrlrange="-1 1"></motor>
     </actuator>
 
+    <sensor>
+        <actuatorfrc actuator="robot0:A_FFJ2" name="Sa_FFJ2" />
+        <actuatorfrc actuator="robot0:A_MFJ2" name="Sa_MFJ2" />
+        <actuatorfrc actuator="robot0:A_RFJ2" name="Sa_RFJ2" />
+        <actuatorfrc actuator="robot0:A_LFJ2" name="Sa_LFJ2" />
+        <actuatorfrc actuator="robot0:A_THJ3" name="Sa_THJ3" />
+        <actuatorfrc actuator="robot0:A_THJ2" name="Sa_THJ2" />
+        
+        <touch name="ST_Tch_fftip"  site="robot0:Tch_fftip"/>
+        <touch name="ST_Tch_mftip"  site="robot0:Tch_mftip"/>
+        <touch name="ST_Tch_rftip"  site="robot0:Tch_rftip"/>
+        <touch name="ST_Tch_lftip"  site="robot0:Tch_lftip"/>
+        <touch name="ST_Tch_thtip"  site="robot0:Tch_thtip"/> 
+    </sensor>
 </mujoco>
