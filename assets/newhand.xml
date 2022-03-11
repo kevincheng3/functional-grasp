@@ -1,6 +1,6 @@
 <mujoco model="robot">
     <compiler convexhull="false" angle="radian" meshdir="E:\zju\newhand_stl\compress" inertiagrouprange="2 6"/>
-    <option timestep="0.0002" impratio="10" cone="elliptic"/>
+    <option timestep="0.0002" impratio="100" cone="elliptic"/>
     <asset>
         <!-- <texture builtin="gradient" height="32" rgb1="0.5764705882 0.8784313725 1"  type="skybox" width="32" /> -->
         <texture builtin="gradient" height="32" rgb1="0.88235 0.95686 0.95294" rgb2="0.43922 0.42353 0.38039" type="skybox" width="32" />
@@ -31,20 +31,21 @@
         <mesh file="little2.stl" name="robot0:lf2" smoothnormal="true" />
         <mesh file="little3.stl" name="robot0:lf1" smoothnormal="true" />
         <mesh file="E:/zju/desktop_organization/contactdb/contactdb_scaled_stl_files_public/stapler.stl" name="object" smoothnormal="true" scale="0.001 0.001 0.001" />
+        <!-- <mesh file="E:/zju/desktop_organization/contactdb/contactdb_scaled_stl_files_public/wine_glass.stl" name="object" smoothnormal="true" scale="0.001 0.001 0.001" /> -->
     </asset>
 
     <default>
         <default class="robot0:asset_class">
             <geom friction="1 0.005 0.001" condim="4" margin="0.001" contype="1" conaffinity="1"></geom>
             <joint limited="true" damping="0.05"></joint>
-            <general ctrllimited="true"></general>
+            <general ctrllimited="true" ctrlrange="-0.3 0.3"></general>
             <site size="0.005" rgba="0.4 0.9 0.4 1"></site>
         </default>
         <default class="robot0:D_Touch">
             <site type="box" size="0.01 0.005 0.013" pos="0.001 -0.001 0.018" rgba="0.8 0.8 0.8 0.15" group="4"></site>
         </default>
         <default class="robot0:DC_Hand">
-            <geom material="robot0:MatColl" contype="1" conaffinity="0" group="4"></geom>
+            <geom material="robot0:MatColl" condim="4" margin="0.001" contype="1" conaffinity="0" group="4"></geom>
         </default>
         <default class="robot0:D_Vizual">
             <geom material="robot0:MatViz" contype="0" conaffinity="0" group="0" type="mesh" rgba="0 0 0 1"></geom>
@@ -59,8 +60,6 @@
 
 
     <worldbody>
-
-
         <geom name='ground' size="2 2 0.25" pos="0 0 -1" type="plane" contype="1" conaffinity="0" material="robot0:MatGnd" />
         <light directional='false' diffuse='.7 .7 .7' specular='0.03 0.03 0.03' pos='-1 -1.0 4.0' dir='1 1.0 -4'/>
 
@@ -94,7 +93,7 @@
                             <body name="robot0:ffdistal" pos="0 0 0.023">
                                 <joint name="robot0:FFJ0" type="hinge" pos="0 0 0" axis="0 1 0" range="0 1.571" ></joint>
                                 <geom class="robot0:D_Vizual" name="robot0:V_ffdistal" pos="0 0 0.001" mesh="robot0:ff1"></geom>
-                                <geom class="robot0:DC_Hand" name="robot0:C_ffdistal" type="capsule" pos="0 0 0.01" size="0.0055 0.01"></geom>
+                                <geom class="robot0:DC_Hand" name="robot0:C_ffdistal" condim="4" type="capsule" pos="0 0 0.01" size="0.0055 0.01"></geom>
                                 <site class="robot0:D_Touch" name="robot0:Tch_fftip"></site>
                                 <site class="robot0:contact" name="robot0:ff_contact" pos=" 0.0055 0 0.02"></site>
                             </body>
@@ -182,16 +181,18 @@
                 </body>
             </body>
         </body>
-        <body name="obj" pos = " 0 0 0">
-            <geom name="obj" type = "mesh" mesh="object" group="2" margin="0.0001" solref="0.002 0.1" friction="1 0.1 0.001" condim="4"/>
+
+        <body name="obj" pos = " 0 0 0.00">
+            <geom name="obj" type = "mesh" mesh="object" group="2" margin="0.0001" solref="0.02 1" friction="1 0.1 0.001" condim="4"/>
             <joint type="free" damping="0.01"/>
             <site name="thumb" size="0.002" pos= "-0.02 -0.012 0.03" rgba="0.6 0 0 1"  />
-            <site name="index" size="0.002" pos= "-0.015 0.012 0.03" rgba="0.6 0 0 1"  />
+            <site name="index" size="0.002" pos= "-0.02 0.012 0.03" rgba="0.6 0 0 1"  />
             <site name="middle" size="0.002" pos= "-0.0 0.012 0.03" rgba="0.6 0 0 1"  />
-            <site name="ring" size="0.002" pos= "0.015 0.012 0.03" rgba="0.6 0 0 1"  />
-            <site name="little" size="0.002" pos= "0.03 0.012 0.03" rgba="0.6 0 0 1"  />
+            <site name="ring" size="0.002" pos= "0.02 0.012 0.03" rgba="0.6 0 0 1"  />
+            <site name="little" size="0.002" pos= "0.04 0.012 0.03" rgba="0.6 0 0 1"  />
         </body>    
     </worldbody>
+
     <tendon>
 		<fixed name="robot0:T_FFJ2c" limited="true" range="-0.0001 0.0001" solreflimit="0.002 0.1">
             <joint joint="robot0:FFJ2" coef="0.003996"></joint>
@@ -242,12 +243,12 @@
         <motor name="robot0:root_rotationx" class="robot0:asset_class" joint="robot0:root_rotationx" ctrlrange="-100 100"></motor>
         <motor name="robot0:root_rotationy" class="robot0:asset_class" joint="robot0:root_rotationy" ctrlrange="-100 100"></motor>
         <motor name="robot0:root_rotationz" class="robot0:asset_class" joint="robot0:root_rotationz" ctrlrange="-100 100"></motor>
-        <motor name="robot0:A_FFJ2" class="robot0:asset_class" joint="robot0:FFJ2" ctrlrange="-1 1"></motor>
-        <motor name="robot0:A_MFJ2" class="robot0:asset_class" joint="robot0:MFJ2" ctrlrange="-1 1"></motor>
-        <motor name="robot0:A_RFJ2" class="robot0:asset_class" joint="robot0:RFJ2" ctrlrange="-1 1"></motor>
-        <motor name="robot0:A_LFJ2" class="robot0:asset_class" joint="robot0:LFJ2" ctrlrange="-1 1"></motor>
-		<motor name="robot0:A_THJ2" class="robot0:asset_class" joint="robot0:THJ2" ctrlrange="-1 1"></motor>
-		<motor name="robot0:A_THJ3" class="robot0:asset_class" joint="robot0:THJ3" ctrlrange="-1 1"></motor>
+        <motor name="robot0:A_FFJ2" class="robot0:asset_class" joint="robot0:FFJ2"></motor>
+        <motor name="robot0:A_MFJ2" class="robot0:asset_class" joint="robot0:MFJ2"></motor>
+        <motor name="robot0:A_RFJ2" class="robot0:asset_class" joint="robot0:RFJ2"></motor>
+        <motor name="robot0:A_LFJ2" class="robot0:asset_class" joint="robot0:LFJ2"></motor>
+		<motor name="robot0:A_THJ2" class="robot0:asset_class" joint="robot0:THJ2"></motor>
+		<motor name="robot0:A_THJ3" class="robot0:asset_class" joint="robot0:THJ3"></motor>
     </actuator>
 
     <sensor>
@@ -264,4 +265,13 @@
         <touch name="ST_Tch_lftip"  site="robot0:Tch_lftip"/>
         <touch name="ST_Tch_thtip"  site="robot0:Tch_thtip"/> 
     </sensor>
+
+    <contact>
+        <pair geom1="obj" geom2="robot0:C_ffdistal" condim = "4" solref="0.02 1" margin="0.0001" friction="1 1 0.1 0.001 0.001"/>
+        <pair geom1="obj" geom2="robot0:C_mfdistal" condim = "4" solref="0.02 1" margin="0.0001" friction="1 1 0.1 0.001 0.001"/>
+        <pair geom1="obj" geom2="robot0:C_rfdistal" condim = "4" solref="0.02 1" margin="0.0001" friction="1 1 0.1 0.001 0.001"/>
+        <pair geom1="obj" geom2="robot0:C_lfdistal" condim = "4" solref="0.02 1" margin="0.0001" friction="1 1 0.1 0.001 0.001"/>
+        <pair geom1="obj" geom2="robot0:C_thdistal" condim = "4" solref="0.02 1" margin="0.0001" friction="1 1 0.1 0.001 0.001"/>
+    </contact>
+
 </mujoco>
