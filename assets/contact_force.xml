@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mujoco>
+    <!-- <compiler angle="radian" coordinate="local" meshdir="E:\zju\X-handsupervisedlearning\assets3_black\stls" texturedir="../textures"></compiler> -->
+    <compiler angle="radian" coordinate="local" meshdir="..\stls" texturedir="../textures"></compiler>
+    <option timestep="0.0002" iterations="100" gravity="0 0 -9.8" impratio="1">
+        <!--apirate only affects the socket API and not the physics simulation-->
+        <flag warmstart="enable"></flag>
+    </option>
+
+    <worldbody>
+            <body pos="0 0 -0.5">
+                <geom type="box" size="10 10 0.1"/>
+                <!-- <joint type="slide"/> -->
+            </body>>
+
+            <body pos="0 0 1">
+                <geom type="box" size="0.5 0.5 0.5" mass="1"/>
+                <joint type="slide"/>
+            </body>
+
+            <body pos="-1 0 1">
+                <geom type="box" size="0.1 1 1" euler="0 -0.785 0" mass="1"/>
+                <site name="left" type="box" size="0.1 1 1" euler="0 -0.785 0" pos = "0.1 0 0" rgba = "1 0 0 0.5"/>
+                <joint name="left" type="slide" axis = "1 0 0"/>
+                <joint name="up1" type="slide"/>
+            </body>
+
+            <body pos="1 0 1">
+                <geom type="box" size="0.1 1 1" euler="0 0.785 0" mass="1"/>
+                <site name="right" type="box" size="0.1 1 1" euler="0 0.785 0" pos = "-0.1 0 0" rgba = "1 0 0 0.5"/>
+                <joint name="right" type="slide" axis = "1 0 0"/>
+                <joint name="up2" type="slide"/>
+            </body>
+        <light directional="true" ambient="0.2 0.2 0.2" diffuse="0.8 0.8 0.8" specular="0.3 0.3 0.3" castshadow="false" pos="0 1 4" dir="0 0 -1" name="light0"></light>
+    </worldbody>
+    <actuator>
+        <motor joint="left" ctrllimited="true" ctrlrange="-10000 10000"/>
+        <motor joint="right" ctrllimited="true" ctrlrange="-10000 10000"/>
+        <motor joint="up1"/>
+        <motor joint="up2"/>
+    </actuator>
+    <sensor>
+        <touch name="left_sensor"  site="left"/> 
+        <touch name="right_sensor"  site="right"/> 
+    </sensor>
+
+</mujoco>
