@@ -62,13 +62,14 @@
         <mesh file="E:/zju/desktop_organization/contactdb/contactdb_scaled_stl_files_public/wine_glass/30.stl" name="object30" smoothnormal="true" scale="0.1 0.1 0.1" />
         <mesh file="E:/zju/desktop_organization/contactdb/contactdb_scaled_stl_files_public/wine_glass/31.stl" name="object31" smoothnormal="true" scale="0.1 0.1 0.1" />
         <mesh file="E:/zju/desktop_organization/contactdb/contactdb_scaled_stl_files_public/wine_glass/32.stl" name="object32" smoothnormal="true" scale="0.1 0.1 0.1"/>
+        <mesh file="E:/zju/desktop_organization/contactdb/contactdb_scaled_stl_files_public/wine_glass.stl" name="object" smoothnormal="true" scale="0.001 0.001 0.001"/>
     </asset>
 
     <default>
         <default class="robot0:asset_class">
             <geom friction="1 0.005 0.001" condim="4" margin="0.001" contype="1" conaffinity="1"></geom>
             <joint limited="true" damping="0.05"></joint>
-            <general ctrllimited="true" ctrlrange="-0.5 0.5"></general>
+            <general ctrllimited="true" ctrlrange="-0.1 0.1"></general>
             <site size="0.005" rgba="0.4 0.9 0.4 1"></site>
         </default>
         <default class="robot0:D_Touch">
@@ -76,6 +77,9 @@
         </default>
         <default class="robot0:DC_Hand">
             <geom material="robot0:MatColl" condim="4" margin="0.001" contype="1" conaffinity="0" group="4"></geom>
+        </default>
+        <default class="robot0:DC_obj">
+            <geom condim="4" margin="0.001" contype="1" conaffinity="1" group="4"></geom>
         </default>
         <default class="robot0:D_Vizual">
             <geom material="robot0:MatViz" contype="0" conaffinity="0" group="0" type="mesh" rgba="0 0 0 1"></geom>
@@ -214,48 +218,49 @@
 
         <body name="obj" pos = " 0 0 0.00">
             <!-- <inertial mass="0.2" pos = "0 0 0.1"/> -->
-            <geom name="obj1" type = "mesh" mesh="object1" group="2" margin="0.0001" solref="0.02 1" friction="1 0.1 0.001" condim="4"/>
-            <geom name="obj2" type = "mesh" mesh="object2" group="2" margin="0.0001" solref="0.02 1" friction="1 0.1 0.001" condim="4"/>
-            <geom name="obj3" type = "mesh" mesh="object3" group="2" margin="0.0001" solref="0.02 1" friction="1 0.1 0.001" condim="4"/>
-            <geom name="obj4" type = "mesh" mesh="object4" group="2" margin="0.0001" solref="0.02 1" friction="1 0.1 0.001" condim="4"/>
-            <geom name="obj5" type = "mesh" mesh="object5" group="2" margin="0.0001" solref="0.02 1" friction="1 0.1 0.001" condim="4"/>
-            <geom name="obj6" type = "mesh" mesh="object6" group="2" margin="0.0001" solref="0.02 1" friction="1 0.1 0.001" condim="4"/>
-            <geom name="obj7" type = "mesh" mesh="object7" group="2" margin="0.0001" solref="0.02 1" friction="1 0.1 0.001" condim="4"/>
-            <geom name="obj8" type = "mesh" mesh="object8" group="2" margin="0.0001" solref="0.02 1" friction="1 0.1 0.001" condim="4"/>
-            <geom name="obj9" type = "mesh" mesh="object9" group="2" margin="0.0001" solref="0.02 1" friction="1 0.1 0.001" condim="4"/>
-            <geom name="obj10" type = "mesh" mesh="object10" group="2" margin="0.0001" solref="0.02 1" friction="1 0.1 0.001" condim="4"/>
-            <geom name="obj11" type = "mesh" mesh="object11" group="2" margin="0.0001" solref="0.02 1" friction="1 0.1 0.001" condim="4"/>
-            <geom name="obj12" type = "mesh" mesh="object12" group="2" margin="0.0001" solref="0.02 1" friction="1 0.1 0.001" condim="4"/>
-            <geom name="obj13" type = "mesh" mesh="object13" group="2" margin="0.0001" solref="0.02 1" friction="1 0.1 0.001" condim="4"/>
-            <geom name="obj14" type = "mesh" mesh="object14" group="2" margin="0.0001" solref="0.02 1" friction="1 0.1 0.001" condim="4"/>
-            <geom name="obj15" type = "mesh" mesh="object15" group="2" margin="0.0001" solref="0.02 1" friction="1 0.1 0.001" condim="4"/>
-            <geom name="obj16" type = "mesh" mesh="object16" group="2" margin="0.0001" solref="0.02 1" friction="1 0.1 0.001" condim="4"/>
-            <geom name="obj17" type = "mesh" mesh="object17" group="2" margin="0.0001" solref="0.02 1" friction="1 0.1 0.001" condim="4"/>
-            <geom name="obj18" type = "mesh" mesh="object18" group="2" margin="0.0001" solref="0.02 1" friction="1 0.1 0.001" condim="4"/>
-            <geom name="obj19" type = "mesh" mesh="object19" group="2" margin="0.0001" solref="0.02 1" friction="1 0.1 0.001" condim="4"/>
-            <geom name="obj20" type = "mesh" mesh="object20" group="2" margin="0.0001" solref="0.02 1" friction="1 0.1 0.001" condim="4"/>
-            <geom name="obj21" type = "mesh" mesh="object21" group="2" margin="0.0001" solref="0.02 1" friction="1 0.1 0.001" condim="4"/>
-            <geom name="obj22" type = "mesh" mesh="object22" group="2" margin="0.0001" solref="0.02 1" friction="1 0.1 0.001" condim="4"/>
-            <geom name="obj23" type = "mesh" mesh="object23" group="2" margin="0.0001" solref="0.02 1" friction="1 0.1 0.001" condim="4"/>
-            <geom name="obj24" type = "mesh" mesh="object24" group="2" margin="0.0001" solref="0.02 1" friction="1 0.1 0.001" condim="4"/>
-            <geom name="obj25" type = "mesh" mesh="object25" group="2" margin="0.0001" solref="0.02 1" friction="1 0.1 0.001" condim="4"/>
-            <geom name="obj26" type = "mesh" mesh="object26" group="2" margin="0.0001" solref="0.02 1" friction="1 0.1 0.001" condim="4"/>
-            <geom name="obj27" type = "mesh" mesh="object27" group="2" margin="0.0001" solref="0.02 1" friction="1 0.1 0.001" condim="4"/>
-            <geom name="obj28" type = "mesh" mesh="object28" group="2" margin="0.0001" solref="0.02 1" friction="1 0.1 0.001" condim="4"/>
-            <geom name="obj29" type = "mesh" mesh="object29" group="2" margin="0.0001" solref="0.02 1" friction="1 0.1 0.001" condim="4"/>
-            <geom name="obj30" type = "mesh" mesh="object30" group="2" margin="0.0001" solref="0.02 1" friction="1 0.1 0.001" condim="4"/>
-            <geom name="obj31" type = "mesh" mesh="object31" group="2" margin="0.0001" solref="0.02 1" friction="1 0.1 0.001" condim="4"/>
-            <geom name="obj32" type = "mesh" mesh="object32" group="2" margin="0.0001" solref="0.02 1" friction="1 0.1 0.001" condim="4"/>
+            <geom class="robot0:DC_obj" name="obj1" type = "mesh" mesh="object1" margin="0.0001" solref="0.02 1" friction="1 0.1 0.001" condim="4"/>
+            <geom class="robot0:DC_obj" name="obj2" type = "mesh" mesh="object2" margin="0.0001" solref="0.02 1" friction="1 0.1 0.001" condim="4"/>
+            <geom class="robot0:DC_obj" name="obj3" type = "mesh" mesh="object3" margin="0.0001" solref="0.02 1" friction="1 0.1 0.001" condim="4"/>
+            <geom class="robot0:DC_obj" name="obj4" type = "mesh" mesh="object4" margin="0.0001" solref="0.02 1" friction="1 0.1 0.001" condim="4"/>
+            <geom class="robot0:DC_obj" name="obj5" type = "mesh" mesh="object5" margin="0.0001" solref="0.02 1" friction="1 0.1 0.001" condim="4"/>
+            <geom class="robot0:DC_obj" name="obj6" type = "mesh" mesh="object6" margin="0.0001" solref="0.02 1" friction="1 0.1 0.001" condim="4"/>
+            <geom class="robot0:DC_obj" name="obj7" type = "mesh" mesh="object7" margin="0.0001" solref="0.02 1" friction="1 0.1 0.001" condim="4"/>
+            <geom class="robot0:DC_obj" name="obj8" type = "mesh" mesh="object8" margin="0.0001" solref="0.02 1" friction="1 0.1 0.001" condim="4"/>
+            <geom class="robot0:DC_obj" name="obj9" type = "mesh" mesh="object9" margin="0.0001" solref="0.02 1" friction="1 0.1 0.001" condim="4"/>
+            <geom class="robot0:DC_obj" name="obj10" type = "mesh" mesh="object10" margin="0.0001" solref="0.02 1" friction="1 0.1 0.001" condim="4"/>
+            <geom class="robot0:DC_obj" name="obj11" type = "mesh" mesh="object11" margin="0.0001" solref="0.02 1" friction="1 0.1 0.001" condim="4"/>
+            <geom class="robot0:DC_obj" name="obj12" type = "mesh" mesh="object12" margin="0.0001" solref="0.02 1" friction="1 0.1 0.001" condim="4"/>
+            <geom class="robot0:DC_obj" name="obj13" type = "mesh" mesh="object13" margin="0.0001" solref="0.02 1" friction="1 0.1 0.001" condim="4"/>
+            <geom class="robot0:DC_obj" name="obj14" type = "mesh" mesh="object14" margin="0.0001" solref="0.02 1" friction="1 0.1 0.001" condim="4"/>
+            <geom class="robot0:DC_obj" name="obj15" type = "mesh" mesh="object15" margin="0.0001" solref="0.02 1" friction="1 0.1 0.001" condim="4"/>
+            <geom class="robot0:DC_obj" name="obj16" type = "mesh" mesh="object16" margin="0.0001" solref="0.02 1" friction="1 0.1 0.001" condim="4"/>
+            <geom class="robot0:DC_obj" name="obj17" type = "mesh" mesh="object17" margin="0.0001" solref="0.02 1" friction="1 0.1 0.001" condim="4"/>
+            <geom class="robot0:DC_obj" name="obj18" type = "mesh" mesh="object18" margin="0.0001" solref="0.02 1" friction="1 0.1 0.001" condim="4"/>
+            <geom class="robot0:DC_obj" name="obj19" type = "mesh" mesh="object19" margin="0.0001" solref="0.02 1" friction="1 0.1 0.001" condim="4"/>
+            <geom class="robot0:DC_obj" name="obj20" type = "mesh" mesh="object20" margin="0.0001" solref="0.02 1" friction="1 0.1 0.001" condim="4"/>
+            <geom class="robot0:DC_obj" name="obj21" type = "mesh" mesh="object21" margin="0.0001" solref="0.02 1" friction="1 0.1 0.001" condim="4"/>
+            <geom class="robot0:DC_obj" name="obj22" type = "mesh" mesh="object22" margin="0.0001" solref="0.02 1" friction="1 0.1 0.001" condim="4"/>
+            <geom class="robot0:DC_obj" name="obj23" type = "mesh" mesh="object23" margin="0.0001" solref="0.02 1" friction="1 0.1 0.001" condim="4"/>
+            <geom class="robot0:DC_obj" name="obj24" type = "mesh" mesh="object24" margin="0.0001" solref="0.02 1" friction="1 0.1 0.001" condim="4"/>
+            <geom class="robot0:DC_obj" name="obj25" type = "mesh" mesh="object25" margin="0.0001" solref="0.02 1" friction="1 0.1 0.001" condim="4"/>
+            <geom class="robot0:DC_obj" name="obj26" type = "mesh" mesh="object26" margin="0.0001" solref="0.02 1" friction="1 0.1 0.001" condim="4"/>
+            <geom class="robot0:DC_obj" name="obj27" type = "mesh" mesh="object27" margin="0.0001" solref="0.02 1" friction="1 0.1 0.001" condim="4"/>
+            <geom class="robot0:DC_obj" name="obj28" type = "mesh" mesh="object28" margin="0.0001" solref="0.02 1" friction="1 0.1 0.001" condim="4"/>
+            <geom class="robot0:DC_obj" name="obj29" type = "mesh" mesh="object29" margin="0.0001" solref="0.02 1" friction="1 0.1 0.001" condim="4"/>
+            <geom class="robot0:DC_obj" name="obj30" type = "mesh" mesh="object30" margin="0.0001" solref="0.02 1" friction="1 0.1 0.001" condim="4"/>
+            <geom class="robot0:DC_obj" name="obj31" type = "mesh" mesh="object31" margin="0.0001" solref="0.02 1" friction="1 0.1 0.001" condim="4"/>
+            <geom class="robot0:DC_obj" name="obj32" type = "mesh" mesh="object32"  margin="0.0001" solref="0.02 1" friction="1 0.1 0.001" condim="4"/>
+            <geom name="obj" class="robot0:D_Vizual" type = "mesh" mesh="object" group="1" margin="0.0001" rgba="0.5 0.5 0.5 0.3"/>
 
             <joint type="free" damping="0.01"/>
-            <site name="thumb" size="0.002" pos= "-0.032 -0.00 0.13" rgba="0.6 0 0 1"  />
-            <site name="index" size="0.002" pos= "0.031 0.001 0.16" rgba="0.6 0 0 1"  />
-            <site name="middle" size="0.002" pos= "0.032 0.008 0.135" rgba="0.6 0 0 1"  />
-            <site name="ring" size="0.002" pos= "0.03 0.005 0.11" rgba="0.6 0 0 1"  />
-            <site name="little" size="0.002" pos= "0.021 0.001 0.09" rgba="0.6 0 0 1"  />
+            <site name="thumb" size="0.005" pos= "-0.032 -0.00 0.13" rgba="0.6 0 0 1" group = "1" />
+            <site name="index" size="0.005" pos= "0.031 0.001 0.16" rgba="0.6 0 0 1" group = "1" />
+            <site name="middle" size="0.005" pos= "0.032 0.008 0.135" rgba="0.6 0 0 1" group = "1" />
+            <site name="ring" size="0.005" pos= "0.03 0.005 0.11" rgba="0.6 0 0 1" group = "1" />
+            <site name="little" size="0.005" pos= "0.021 0.001 0.09" rgba="0.6 0 0 1" group = "1"/>
         </body>    
         <!-- <body name="obj1" pos = " 0 0 0.19">
-            <geom name="obj1" type = "box" size = "0.01 0.01 0.01" group="2" margin="0.0001" solref="0.02 1" friction="1 0.1 0.001" condim="4"/>
+            <geom name="obj1" type = "box" size = "0.01 0.01 0.01" margin="0.0001" solref="0.02 1" friction="1 0.1 0.001" condim="4"/>
             <joint armature="0" axis="1 0 0" damping="10" limited="false" pos="0 0 0" type="slide" />
             <joint armature="0" axis="0 1 0" damping="10" limited="false" pos="0 0 0" type="slide" />
             <joint armature="0" axis="0 0 1" damping="10" limited="false" pos="0 0 0" type="slide" />
