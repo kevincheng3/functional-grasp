@@ -30,8 +30,26 @@
         <mesh file="little1.stl" name="robot0:lf3" smoothnormal="true" />
         <mesh file="little2.stl" name="robot0:lf2" smoothnormal="true" />
         <mesh file="little3.stl" name="robot0:lf1" smoothnormal="true" />
-        <mesh file="E:/zju/desktop_organization/contactdb/contactdb_scaled_stl_files_public/stapler.stl" name="object" smoothnormal="true" scale="0.001 0.001 0.001" />
-        <!-- <mesh file="E:/zju/desktop_organization/contactdb/contactdb_scaled_stl_files_public/wine_glass.stl" name="object" smoothnormal="true" scale="0.001 0.001 0.001" /> -->
+        <mesh file="E:/zju/desktop_organization/functional grasp/frame_work/assets\obj\stapler\1.stl" name="object-0" scale="0.1 0.1 0.1" />
+        <mesh file="E:/zju/desktop_organization/functional grasp/frame_work/assets\obj\stapler\10.stl" name="object-1" scale="0.1 0.1 0.1" />
+        <mesh file="E:/zju/desktop_organization/functional grasp/frame_work/assets\obj\stapler\11.stl" name="object-2" scale="0.1 0.1 0.1" />
+        <mesh file="E:/zju/desktop_organization/functional grasp/frame_work/assets\obj\stapler\12.stl" name="object-3" scale="0.1 0.1 0.1" />
+        <mesh file="E:/zju/desktop_organization/functional grasp/frame_work/assets\obj\stapler\13.stl" name="object-4" scale="0.1 0.1 0.1" />
+        <mesh file="E:/zju/desktop_organization/functional grasp/frame_work/assets\obj\stapler\14.stl" name="object-5" scale="0.1 0.1 0.1" />
+        <mesh file="E:/zju/desktop_organization/functional grasp/frame_work/assets\obj\stapler\15.stl" name="object-6" scale="0.1 0.1 0.1" />
+        <mesh file="E:/zju/desktop_organization/functional grasp/frame_work/assets\obj\stapler\16.stl" name="object-7" scale="0.1 0.1 0.1" />
+        <mesh file="E:/zju/desktop_organization/functional grasp/frame_work/assets\obj\stapler\17.stl" name="object-8" scale="0.1 0.1 0.1" />
+        <mesh file="E:/zju/desktop_organization/functional grasp/frame_work/assets\obj\stapler\2.stl" name="object-9" scale="0.1 0.1 0.1" />
+        <mesh file="E:/zju/desktop_organization/functional grasp/frame_work/assets\obj\stapler\3.stl" name="object-10" scale="0.1 0.1 0.1" />
+        <mesh file="E:/zju/desktop_organization/functional grasp/frame_work/assets\obj\stapler\4.stl" name="object-11" scale="0.1 0.1 0.1" />
+        <mesh file="E:/zju/desktop_organization/functional grasp/frame_work/assets\obj\stapler\5.stl" name="object-12" scale="0.1 0.1 0.1" />
+        <mesh file="E:/zju/desktop_organization/functional grasp/frame_work/assets\obj\stapler\6.stl" name="object-13" scale="0.1 0.1 0.1" />
+        <mesh file="E:/zju/desktop_organization/functional grasp/frame_work/assets\obj\stapler\7.stl" name="object-14" scale="0.1 0.1 0.1" />
+        <mesh file="E:/zju/desktop_organization/functional grasp/frame_work/assets\obj\stapler\8.stl" name="object-15" scale="0.1 0.1 0.1" />
+        <mesh file="E:/zju/desktop_organization/functional grasp/frame_work/assets\obj\stapler\9.stl" name="object-16" scale="0.1 0.1 0.1" />
+        <mesh file="E:/zju/desktop_organization/functional grasp/frame_work/assets\visual\stapler\1.stl" name="object" scale="0.001 0.001 0.001" />    
+    
+    
     </asset>
 
     <default>
@@ -43,6 +61,9 @@
         </default>
         <default class="robot0:D_Touch">
             <site type="box" size="0.01 0.005 0.013" pos="0.001 -0.001 0.018" rgba="0.8 0.8 0.8 0.15" group="4"></site>
+        </default>
+        <default class="robot0:DC_obj">
+            <geom conaffinity="1" condim="4" contype="1" group="4" margin="0.001" />
         </default>
         <default class="robot0:DC_Hand">
             <geom material="robot0:MatColl" condim="4" margin="0.001" contype="1" conaffinity="0" group="4"></geom>
@@ -183,7 +204,24 @@
         </body>
 
         <body name="obj" pos = " 0 0 0.00">
-            <geom name="obj" type = "mesh" mesh="object" group="2" margin="0.0001" solref="0.02 1" friction="1 0.1 0.001" condim="4"/>
+            <geom class="robot0:DC_obj" mesh="object-0" pos="0 0 0" type="mesh" />
+            <geom class="robot0:DC_obj" mesh="object-1" pos="0 0 0" type="mesh" />
+            <geom class="robot0:DC_obj" mesh="object-2" pos="0 0 0" type="mesh" />
+            <geom class="robot0:DC_obj" mesh="object-3" pos="0 0 0" type="mesh" />
+            <geom class="robot0:DC_obj" mesh="object-4" pos="0 0 0" type="mesh" />
+            <geom class="robot0:DC_obj" mesh="object-5" pos="0 0 0" type="mesh" />
+            <geom class="robot0:DC_obj" mesh="object-6" pos="0 0 0" type="mesh" />
+            <geom class="robot0:DC_obj" mesh="object-7" pos="0 0 0" type="mesh" />
+            <geom class="robot0:DC_obj" mesh="object-8" pos="0 0 0" type="mesh" />
+            <geom class="robot0:DC_obj" mesh="object-9" pos="0 0 0" type="mesh" />
+            <geom class="robot0:DC_obj" mesh="object-10" pos="0 0 0" type="mesh" />
+            <geom class="robot0:DC_obj" mesh="object-11" pos="0 0 0" type="mesh" />
+            <geom class="robot0:DC_obj" mesh="object-12" pos="0 0 0" type="mesh" />
+            <geom class="robot0:DC_obj" mesh="object-13" pos="0 0 0" type="mesh" />
+            <geom class="robot0:DC_obj" mesh="object-14" pos="0 0 0" type="mesh" />
+            <geom class="robot0:DC_obj" mesh="object-15" pos="0 0 0" type="mesh" />
+            <geom class="robot0:DC_obj" mesh="object-16" pos="0 0 0" type="mesh" />
+            <geom class="robot0:D_Vizual" mesh="object" pos="0 0 0" rgba="0.5 0.5 0.5 0.8" type="mesh" />
             <joint type="free" damping="0.01"/>
             <site name="thumb" size="0.002" pos= "-0.02 -0.012 0.03" rgba="0.6 0 0 1"  />
             <site name="index" size="0.002" pos= "-0.02 0.012 0.03" rgba="0.6 0 0 1"  />
@@ -266,12 +304,12 @@
         <touch name="ST_Tch_thtip"  site="robot0:Tch_thtip"/> 
     </sensor>
 
-    <contact>
+    <!-- <contact>
         <pair geom1="obj" geom2="robot0:C_ffdistal" condim = "4" solref="0.02 1" margin="0.0001" friction="1 1 0.1 0.001 0.001"/>
         <pair geom1="obj" geom2="robot0:C_mfdistal" condim = "4" solref="0.02 1" margin="0.0001" friction="1 1 0.1 0.001 0.001"/>
         <pair geom1="obj" geom2="robot0:C_rfdistal" condim = "4" solref="0.02 1" margin="0.0001" friction="1 1 0.1 0.001 0.001"/>
         <pair geom1="obj" geom2="robot0:C_lfdistal" condim = "4" solref="0.02 1" margin="0.0001" friction="1 1 0.1 0.001 0.001"/>
         <pair geom1="obj" geom2="robot0:C_thdistal" condim = "4" solref="0.02 1" margin="0.0001" friction="1 1 0.1 0.001 0.001"/>
-    </contact>
+    </contact> -->
 
 </mujoco>
