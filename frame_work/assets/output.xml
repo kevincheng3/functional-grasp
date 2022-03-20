@@ -283,24 +283,24 @@
       </asset>
       <worldbody>
         <body name="object" pos="0 0 .00">
-          <geom class="robot0:DC_obj" mesh="object-0" pos="0 0 0" type="mesh" />
-<geom class="robot0:DC_obj" mesh="object-1" pos="0 0 0" type="mesh" />
-<geom class="robot0:DC_obj" mesh="object-2" pos="0 0 0" type="mesh" />
-<geom class="robot0:DC_obj" mesh="object-3" pos="0 0 0" type="mesh" />
-<geom class="robot0:DC_obj" mesh="object-4" pos="0 0 0" type="mesh" />
-<geom class="robot0:DC_obj" mesh="object-5" pos="0 0 0" type="mesh" />
-<geom class="robot0:DC_obj" mesh="object-6" pos="0 0 0" type="mesh" />
-<geom class="robot0:DC_obj" mesh="object-7" pos="0 0 0" type="mesh" />
-<geom class="robot0:DC_obj" mesh="object-8" pos="0 0 0" type="mesh" />
-<geom class="robot0:DC_obj" mesh="object-9" pos="0 0 0" type="mesh" />
-<geom class="robot0:DC_obj" mesh="object-10" pos="0 0 0" type="mesh" />
-<geom class="robot0:DC_obj" mesh="object-11" pos="0 0 0" type="mesh" />
-<geom class="robot0:DC_obj" mesh="object-12" pos="0 0 0" type="mesh" />
-<geom class="robot0:DC_obj" mesh="object-13" pos="0 0 0" type="mesh" />
-<geom class="robot0:DC_obj" mesh="object-14" pos="0 0 0" type="mesh" />
-<geom class="robot0:DC_obj" mesh="object-15" pos="0 0 0" type="mesh" />
-<geom class="robot0:DC_obj" mesh="object-16" pos="0 0 0" type="mesh" />
-<geom class="robot0:D_Vizual" mesh="object" pos="0 0 0" rgba="0.5 0.5 0.5 0.8" type="mesh" />
+          <geom class="robot0:DC_obj" euler="-1.571 0 0" mesh="object-0" pos="0 0 0.015" type="mesh" />
+<geom class="robot0:DC_obj" euler="-1.571 0 0" mesh="object-1" pos="0 0 0.015" type="mesh" />
+<geom class="robot0:DC_obj" euler="-1.571 0 0" mesh="object-2" pos="0 0 0.015" type="mesh" />
+<geom class="robot0:DC_obj" euler="-1.571 0 0" mesh="object-3" pos="0 0 0.015" type="mesh" />
+<geom class="robot0:DC_obj" euler="-1.571 0 0" mesh="object-4" pos="0 0 0.015" type="mesh" />
+<geom class="robot0:DC_obj" euler="-1.571 0 0" mesh="object-5" pos="0 0 0.015" type="mesh" />
+<geom class="robot0:DC_obj" euler="-1.571 0 0" mesh="object-6" pos="0 0 0.015" type="mesh" />
+<geom class="robot0:DC_obj" euler="-1.571 0 0" mesh="object-7" pos="0 0 0.015" type="mesh" />
+<geom class="robot0:DC_obj" euler="-1.571 0 0" mesh="object-8" pos="0 0 0.015" type="mesh" />
+<geom class="robot0:DC_obj" euler="-1.571 0 0" mesh="object-9" pos="0 0 0.015" type="mesh" />
+<geom class="robot0:DC_obj" euler="-1.571 0 0" mesh="object-10" pos="0 0 0.015" type="mesh" />
+<geom class="robot0:DC_obj" euler="-1.571 0 0" mesh="object-11" pos="0 0 0.015" type="mesh" />
+<geom class="robot0:DC_obj" euler="-1.571 0 0" mesh="object-12" pos="0 0 0.015" type="mesh" />
+<geom class="robot0:DC_obj" euler="-1.571 0 0" mesh="object-13" pos="0 0 0.015" type="mesh" />
+<geom class="robot0:DC_obj" euler="-1.571 0 0" mesh="object-14" pos="0 0 0.015" type="mesh" />
+<geom class="robot0:DC_obj" euler="-1.571 0 0" mesh="object-15" pos="0 0 0.015" type="mesh" />
+<geom class="robot0:DC_obj" euler="-1.571 0 0" mesh="object-16" pos="0 0 0.015" type="mesh" />
+<geom class="robot0:D_Vizual" euler="-1.571 0 0" mesh="object" pos="0 0 0.015" rgba="0.5 0.5 0.5 0.8" type="mesh" />
             <joint name="object:joint" type="free" />
         </body>
       </worldbody>

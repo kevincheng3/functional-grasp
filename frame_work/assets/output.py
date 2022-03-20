@@ -119,7 +119,7 @@ contact_site.append(cfg[str(objs[indices[0]])][way[i]]["ring_vec"])
 contact_site.append(cfg[str(objs[indices[0]])][way[i]]["little_vec"])
 
 contact_para = np.array(contact_site).ravel()
-print(contact_para)
+# print(contact_para)
 
 constraint = []
 constraint.append(cfg['constraint'][str(objs[indices[0]])]["upper bound"])
@@ -421,17 +421,12 @@ from scipy.optimize import Bounds
 bounds = Bounds(constraint_para[1], constraint_para[0])
 
 res = minimize(cost, x0, args=(contact_para,),method = "L-BFGS-B", 
-            options={'verbose': 1}, bounds=bounds)
+            options={'verbose': 0}, bounds=bounds)
 # res.x = np.zeros(12)
 np.save("functional grasp/frame_work/data/result.npy", res.x)   
 # print(res.x)
 hand = Hand()
 hand_pos, hand_vec = hand.fingertip_pos(res.x) 
-print(hand_pos)
-print("-----------------------")
-print()
-
-
 
 # write the xml for the grasp
 xmls = []
@@ -443,7 +438,7 @@ object_xml = make_mesh_object(
 )
 
 xmls.append(object_xml)
-root = tree.getroot()   
+root = tree.getroot()
 
 other = ET.ElementTree(xmls[0])
 root.extend(other.getroot())
@@ -595,7 +590,6 @@ if str(objs[indices[0]]) == "stapler":
         sensor_data.append(sim.data.sensordata.copy())
         sim.step()
         viewer.render()
-
 
 if str(objs[indices[0]]) == "wine_glass":
     for i in range(1000):
