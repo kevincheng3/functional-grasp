@@ -26,6 +26,19 @@ def quat2euler(quat):
     r = R.from_quat(np.array([quat[1], quat[2], quat[3], quat[0]]))
     return r.as_euler('XYZ')
 
+parser = argparse.ArgumentParser()
+parser.add_argument("--theta0", help="angle of theta0", type = float, default = 0.0)
+parser.add_argument("--theta1", help="angle of theta1", type = float, default = 0.0)
+parser.add_argument("--theta2", help="angle of theta2", type = float, default = 0.0)
+parser.add_argument("--theta3", help="angle of theta3", type = float, default = 0.0)
+parser.add_argument("--theta4", help="angle of theta4", type = float, default = 0.0)
+
+args = parser.parse_args()
+theta0 = args.theta0
+theta1 = args.theta1
+theta2 = args.theta2
+theta3 = args.theta3
+theta4 = args.theta4
 
 class Hand(object):
     def __init__(self):
@@ -268,30 +281,29 @@ def cost(x, infor_object):
 
     pos_cost = np.linalg.norm(1000 * (hand_pos[:] - np.array( obj_pos[:])))
                 
-    # vec_cost = 10 * np.dot(np.array( hand_vec[:]), np.array( obj_vec[:]))
-    vec_cost = 0
-    # print("hand:", hand_pos, '\n', hand_vec)  
-    # print(pos_cost, vec_cost)
+    vec_cost = 10 * np.dot(np.array( hand_vec[:]), np.array( obj_vec[:]))
+    
+
     return pos_cost + vec_cost
 
 
 class Object(object):
-    def __inint__(self, pos_index, pos_middle, pos_ring, pos_little, pos_thumb, vec_index, vec_middle, vec_ring, vec_little, vec_thumb):
+    def __inint__(self, pos_thumb, pos_index, pos_middle, pos_ring, pos_little, vec_thumb, vec_index, vec_middle, vec_ring, vec_little):
+
+        self.thumb_contact = pos_thumb
         self.index_contact = pos_index
         self.middle_contact = pos_middle
         self.ring_contact = pos_ring
         self.little_contact = pos_little
-        self.thumb_contact = pos_thumb
 
-
+        self.thumb_vec = vec_thumb
         self.index_vec = vec_index
         self.middle_vec = vec_middle
         self.ring_vec = vec_ring
         self.thumb_vec = vec_little
-        self.thumb_vec = vec_thumb
 
     def get_infor(self):
-        return  self.index_contact, self.middle_contact, self.ring_contact,self.little_contact, self.thumb_contact
+        return self.thumb_contact, self.index_contact, self.middle_contact, self.ring_contact,self.little_contact
 
 def collision_constraint():
     # the kinematics constraint of the hand
@@ -303,60 +315,58 @@ def collision_constraint():
 
 from scipy.optimize import Bounds
 
-# bounds = Bounds([-0.25, 0.0, -0.3, -0.75, -0.75, -0.75, -0.436, 0, 0,    0, -1.047, 0, -0.262, -0.524, -1.571], 
-#                 [0.25, 0.2, 0.5, 0.75, 0.75, 0.75, 0.436,  1.571, 1.571, 1.571, 1.047, 1.309, 0.262, 0.524, 0])
-
 def main():
-    "data for use"
-    # constraint_para = np.load("functional grasp/data/wine_glass/constraint_data.npy")
+    # pos = np.zeros(12)
+    # hand = Hand()
+    # position, vector = hand.fingertip_pos(pos)
+    # for i in range(0,15,3):
+    #     print(position[i:i+3] )
+    #     print(vector[i:i+3])
+    constraint_para = np.load("functional grasp/data/constraint_data.npy")
 
-    # contact_para = np.load('functional grasp/data/wine_glass/all_contact_data.npy') 
+    contact_para = np.array([
+        [0.02, 0.0, 0.015],
+        [0.0, 0.0, 0.015],
+        [-0.02, 0.0, 0.015],
+        [-0.04, 0.0, 0.015],
+        [0.02, 0.038, 0.015],
 
-    # bounds = Bounds(constraint_para[0][:], constraint_para[1][:])
-
-    # x0 = np.load("functional grasp/data/wine_glass/ini.npy")
-
-
-    "data for handoff"
+        [0, -1, 0],
+        [0, -1, 0],
+        [0, -1, 0],
+        [0, -1, 0],
+        [0, 1, 0],
+    ]).ravel()
+    # contact_para = np.load('../data/all_contact_data.npy') 
     constraint_para = np.array([
         [-0.25, 0.25],
         [-0.25, 0.25],
-        [-0.3, 0.2],
+        [-0.3, 0.5],
 
-        [-3.14, 3.14],
-        [-3.14, 3.14],
-        [-3.14, 3.14],
+        [-3, 3],
+        [-3, 3],
+        [-3, 3],
+
 
         [0, 1.571],
         [0, 1.571],
         [0, 1.571],    
         [0, 1.571],
         [0, 2],
-        [0, 1.571]
+        [0, 1.571],
+
+
     ]).T
+
+
     bounds = Bounds(constraint_para[0][:], constraint_para[1][:])
-
-    contact_para =np.array([
-        [0.028, 0.02, 0.15],
-        [0.032, 0.00, 0.15],
-        [0.027, -0.02, 0.15],
-        [0.026, -0.04, 0.15],
-        [-0.031, -0.00, 0.15],        
-        [1, 0, 0],
-        [1, 0, 0],
-        [1, 0, 0],
-        [1, 0, 0],
-        [-1, 0, 0],
-    ]).ravel()
-
-    x0 = np.array([
-        -0.05, 0.01, 0.07, 0, 2.4, 0, 0, 0, 0, 0, 1.62, 0
-    ])
+    x0 = np.array([0, 0.15, 0, 2.04, 0, -1.57, 0, 0, 0, 0, 1.8, 0])
+    # x0 = np.load("../data/ini.npy")
 
     res = minimize(cost, x0, args=(contact_para,),method = "L-BFGS-B", 
                options={'verbose': 1}, bounds=bounds)
     # res.x = np.zeros(12)
-    np.save("functional grasp/data/wine_glass/data_for_hand_off.npy", res.x)   
+    np.save("functional grasp/data/stalper_use.npy", res.x)   
     # print(res.x)
     hand = Hand()
     hand_pos, hand_vec = hand.fingertip_pos(res.x) 
@@ -366,9 +376,6 @@ def main():
     print('____________________________________________________________________')
     for i in range(0,15,3):       
         print(hand_vec[i:i+3])
-
-
-
 
 if __name__ == '__main__':
     main()
